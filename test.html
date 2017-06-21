@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>关于模拟点击真实点击的区分</title>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<button id="btn1" onclick="click1(event)">第一个</button>
+	<button id="btn2">第二个</button>
+	<script>
+	function click1(event){
+		alert('click1');
+		console.log('event.clientX', event.clientX);
+		console.log('event.clientY', event.clientY);
+		console.log('event.pageX', event.pageX);
+		console.log('event.pageY', event.pageY);
+	}
+	
+	$("#btn2").bind('click', function(e){
+		 if(e.hasOwnProperty('originalEvent')) 
+			alert('真点击了');
+		else {
+			alert('模拟点击了');
+		}
+			
+		});
+		
+		
+		$("#btn2").click();
+	document.getElementById('btn1').click(event);
+	</script>
+</body>
+</html>	
